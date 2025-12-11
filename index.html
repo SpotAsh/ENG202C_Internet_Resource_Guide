@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMPSCI465 Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #001F54;
+            --color-accent: #4CAF50;
+            --color-background: #FFFFFF;
+            --color-secondary-bg: #F5F5F5;
+            --font-stack: 'Roboto', 'Arial', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            font-size: 17px;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--color-background);
+            padding-top: 80px;
+        }
+
+        /* Fixed Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-primary);
+            color: var(--color-background);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--color-background);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-bottom: 3px solid var(--color-accent);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Front Matter Section */
+        #front-matter ul {
+            margin-left: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        #front-matter li {
+            margin-bottom: 0.5rem;
+        }
+
+        #front-matter a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        #front-matter a:hover {
+            text-decoration: underline;
+        }
+
+        /* Evaluation Section */
+        #evaluation ol {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+
+        #evaluation li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        #evaluation li strong {
+            color: var(--color-primary);
+        }
+
+        /* Resource Abstracts Section */
+        #resource-abstracts {
+            margin-top: 3rem;
+        }
+
+        .resource-section {
+            background-color: var(--color-secondary-bg);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-accent);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-section h2 {
+            border-bottom: none;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0;
+        }
+
+        .resource-section h3 {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .resource-section p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .resource-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-secondary-bg);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 2px solid var(--color-primary);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* General Link Styling */
+        a {
+            color: var(--color-accent);
+        }
+
+        /* Spacing */
+        p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header id="top">
+        <h1>CMPSCI465 Guide</h1>
+        <nav>
+            <a href="#front-matter">Front Matter</a>
+            <a href="#resource-abstracts">Resource Abstracts</a>
+            <a href="#evaluation">How to Read Abstracts</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Front Matter Section -->
+        <section id="front-matter">
+            <h2>Front Matter</h2>
+            
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#front-matter">Front Matter</a></li>
+                <li><a href="#evaluation">How to Read the Resource Abstracts</a></li>
+                <li><a href="#resource-abstracts">Resource Abstracts</a></li>
+                <li><a href="#resource-1">Resource 1: LeetCode</a></li>
+                <li><a href="#resource-2">Resource 2: MIT OpenCourseWare — 6.006</a></li>
+                <li><a href="#resource-3">Resource 3: VisuAlgo</a></li>
+                <li><a href="#resource-4">Resource 4: NeetCode</a></li>
+                <li><a href="#resource-5">Resource 5: WilliamFiset YouTube Channel</a></li>
+                <li><a href="#resource-6">Resource 6: Abdul Bari YouTube Channel</a></li>
+            </ul>
+
+            <h3>What's in the Guide</h3>
+            <p>This guide contains six highly-rated online resources specifically curated to support CMPSC 465 students in mastering algorithms and data structures. Each resource has been evaluated for its quality, relevance, and practical utility in helping students succeed in the course. The resources cover problem-solving platforms, academic references, interactive visualizations, structured learning paths, and comprehensive video lectures.</p>
+
+            <h3>Who the Guide is for</h3>
+            <p>This guide is designed for <strong>CMPSC 465 undergraduate students</strong> who are seeking reliable, high-quality online resources to supplement their coursework. Whether you're struggling with specific algorithm concepts, preparing for exams, or looking to deepen your understanding through practice, this guide provides carefully selected resources that align with the course curriculum and learning objectives.</p>
+
+            <h3>What the Guide Assumes Users Know</h3>
+            <p>The guide assumes that users know <strong>what topic they want to study</strong>. You should have a basic understanding of the course structure and be able to identify which algorithms, data structures, or problem-solving techniques you need to focus on. The resources are organized to help you dive directly into relevant content once you've identified your learning needs.</p>
+
+            <h3>How the Guide is Organized for Use</h3>
+            <p>The guide is organized as a single-page, long-scrolling document with clear internal navigation. Use the fixed navigation bar at the top to jump to major sections. Each resource abstract follows a consistent four-part structure (explained in the "How to Read the Resource Abstracts" section) that helps you quickly assess whether a resource matches your needs. Resources are presented in order of recommended priority, with problem-solving platforms first, followed by academic references, visualization tools, and video-based learning resources.</p>
+        </section>
+
+        <!-- Evaluation Section -->
+        <section id="evaluation">
+            <h2>How to Read the Resource Abstracts</h2>
+            <p>Each resource abstract in this guide follows a standardized four-part structure designed to help you quickly evaluate and effectively use each resource. Understanding this structure will help you navigate the guide efficiently and select the most appropriate resources for your learning needs.</p>
+            
+            <ol>
+                <li><strong>What is this?</strong> (Function) - This section describes the primary purpose and function of the resource. It explains what type of tool or content platform you're looking at and what it's designed to accomplish.</li>
+                
+                <li><strong>What is in it?</strong> (Content, scope) - This section details the specific content available in the resource, including topics covered, types of materials provided, and the breadth and depth of the content. It helps you understand what you'll find when you access the resource.</li>
+                
+                <li><strong>Relevance to Audience:</strong> How is the information useful for a CMPSC 465 student? - This section directly addresses how the resource connects to your coursework and learning objectives. It explains why this particular resource is valuable for students in CMPSC 465 and how it supports your success in the course.</li>
+                
+                <li><strong>Usage Tips:</strong> What tips help use the resource efficiently? - This section provides practical advice on how to get the most out of the resource. It includes recommendations on navigation, study strategies, and best practices for incorporating the resource into your learning workflow.</li>
+            </ol>
+        </section>
+
+        <!-- Resource Abstracts Section -->
+        <section id="resource-abstracts">
+            <h2>Resource Abstracts</h2>
+
+            <!-- Resource 1: LeetCode -->
+            <section id="resource-1" class="resource-section">
+                <h2>Resource 1: LeetCode (Problem-Solving Platform)</h2>
+                
+                <h3>What is this?</h3>
+                <p>LeetCode is a comprehensive online platform designed for coding interview preparation and algorithm practice. It functions as a problem-solving platform where users can solve coding challenges, test their solutions, and compare their approaches with others. The platform provides an integrated code editor, test cases, and performance analysis tools.</p>
+                
+                <h3>What is in it?</h3>
+                <p>LeetCode contains thousands of coding problems organized by difficulty (Easy, Medium, Hard), topics (arrays, trees, graphs, dynamic programming, etc.), and companies. Each problem includes:</p>
+                <ul>
+                    <li>Problem descriptions with examples and constraints</li>
+                    <li>An online code editor supporting multiple programming languages</li>
+                    <li>Test cases for validation</li>
+                    <li>Discussion forums with solutions and explanations</li>
+                    <li>Performance metrics (time and space complexity analysis)</li>
+                    <li>Premium features including company-specific question lists and detailed solution explanations</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>LeetCode is directly relevant to CMPSC 465 students because it provides hands-on practice with the exact types of algorithmic problems covered in the course. The platform helps you:</p>
+                <ul>
+                    <li>Apply theoretical algorithm concepts to real coding problems</li>
+                    <li>Practice implementing data structures and algorithms in code</li>
+                    <li>Develop problem-solving skills and pattern recognition</li>
+                    <li>Prepare for exams and assignments that require coding solutions</li>
+                    <li>Understand time and space complexity through performance analysis</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To use LeetCode effectively for CMPSC 465:</p>
+                <ul>
+                    <li>Start with problems tagged with topics you're currently studying in class</li>
+                    <li>Use the "Discuss" section to learn different approaches after attempting problems yourself</li>
+                    <li>Focus on understanding the algorithm patterns rather than memorizing solutions</li>
+                    <li>Practice problems in order of difficulty (Easy → Medium → Hard) to build confidence</li>
+                    <li>Review the time and space complexity of your solutions and compare with optimal approaches</li>
+                    <li>Create a study plan by filtering problems by specific data structures or algorithm types</li>
+                </ul>
+                
+                <a href="https://leetcode.com" target="_blank" class="cta-button">Go to LeetCode</a>
+            </section>
+
+            <!-- Resource 2: MIT OpenCourseWare -->
+            <section id="resource-2" class="resource-section">
+                <h2>Resource 2: MIT OpenCourseWare — 6.006 (Academic Reference)</h2>
+                
+                <h3>What is this?</h3>
+                <p>MIT OpenCourseWare (OCW) 6.006 is the publicly available course materials from MIT's Introduction to Algorithms course. It functions as a comprehensive academic reference that provides the same rigorous content used in MIT's undergraduate computer science curriculum. This resource offers formal, theoretical coverage of algorithms and data structures with mathematical rigor.</p>
+                
+                <h3>What is in it?</h3>
+                <p>The MIT OCW 6.006 course includes:</p>
+                <ul>
+                    <li>Complete lecture notes and slides covering all major algorithm topics</li>
+                    <li>Video lectures from MIT professors explaining concepts in detail</li>
+                    <li>Problem sets with solutions for practice</li>
+                    <li>Recitation materials with additional examples and explanations</li>
+                    <li>Reading assignments from the classic "Introduction to Algorithms" textbook (CLRS)</li>
+                    <li>Topics including: sorting, searching, graph algorithms, dynamic programming, greedy algorithms, and more</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>MIT OCW 6.006 is highly relevant to CMPSC 465 students because it provides:</p>
+                <ul>
+                    <li>Rigorous theoretical foundations that complement your course lectures</li>
+                    <li>Alternative explanations of complex concepts from world-class instructors</li>
+                    <li>Mathematical proofs and formal analysis that deepen understanding</li>
+                    <li>Practice problems with solutions that help prepare for exams</li>
+                    <li>Comprehensive coverage of topics that align with typical algorithms course curricula</li>
+                    <li>A reference for understanding the "why" behind algorithm design choices</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To maximize the value of MIT OCW 6.006:</p>
+                <ul>
+                    <li>Use it as a supplementary reference when you need deeper theoretical understanding</li>
+                    <li>Watch video lectures on topics you find challenging in your course</li>
+                    <li>Work through problem sets to reinforce concepts covered in class</li>
+                    <li>Compare the MIT approach with your course materials to gain multiple perspectives</li>
+                    <li>Focus on lecture notes for quick reference on specific algorithms</li>
+                    <li>Use recitation materials for additional worked examples</li>
+                    <li>Don't try to consume everything—target specific topics you're studying</li>
+                </ul>
+                
+                <a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/" target="_blank" class="cta-button">Go to MIT OpenCourseWare</a>
+            </section>
+
+            <!-- Resource 3: VisuAlgo -->
+            <section id="resource-3" class="resource-section">
+                <h2>Resource 3: VisuAlgo (Interactive Visualization Tool)</h2>
+                
+                <h3>What is this?</h3>
+                <p>VisuAlgo is an interactive visualization tool designed to help students understand how algorithms and data structures work through animated, step-by-step visualizations. It functions as a learning aid that makes abstract algorithmic concepts concrete by showing exactly what happens at each step of execution.</p>
+                
+                <h3>What is in it?</h3>
+                <p>VisuAlgo contains interactive visualizations for:</p>
+                <ul>
+                    <li>Sorting algorithms (Bubble Sort, Quick Sort, Merge Sort, Heap Sort, etc.)</li>
+                    <li>Data structures (Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, Hash Tables)</li>
+                    <li>Graph algorithms (BFS, DFS, Dijkstra's, A*, Minimum Spanning Tree, etc.)</li>
+                    <li>Dynamic programming problems</li>
+                    <li>String algorithms</li>
+                    <li>Each visualization allows you to step through algorithms manually or watch automatic execution</li>
+                    <li>Customizable input data for testing different scenarios</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>VisuAlgo is particularly valuable for CMPSC 465 students because:</p>
+                <ul>
+                    <li>Visual learning helps solidify understanding of how algorithms manipulate data</li>
+                    <li>Step-by-step animations clarify complex algorithm execution</li>
+                    <li>Interactive exploration allows you to test edge cases and see how algorithms handle different inputs</li>
+                    <li>Visual representations make abstract concepts like recursion and tree traversals more intuitive</li>
+                    <li>Helps bridge the gap between theoretical understanding and practical implementation</li>
+                    <li>Useful for exam preparation when you need to trace through algorithm execution</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To get the most from VisuAlgo:</p>
+                <ul>
+                    <li>Use it alongside your course materials—visualize algorithms as you learn them</li>
+                    <li>Start with manual step-through mode to understand each operation before using automatic mode</li>
+                    <li>Experiment with different input sizes and configurations to see how algorithms behave</li>
+                    <li>Use it to verify your understanding when tracing through algorithms on paper</li>
+                    <li>Focus on visualizations for topics you find most challenging</li>
+                    <li>Compare visualizations of different algorithms solving the same problem (e.g., different sorting algorithms)</li>
+                    <li>Take advantage of the ability to pause and step backward to review specific steps</li>
+                </ul>
+                
+                <a href="https://visualgo.net" target="_blank" class="cta-button">Go to VisuAlgo</a>
+            </section>
+
+            <!-- Resource 4: NeetCode -->
+            <section id="resource-4" class="resource-section">
+                <h2>Resource 4: NeetCode (Structured Learning & Walkthroughs)</h2>
+                
+                <h3>What is this?</h3>
+                <p>NeetCode is a structured learning platform that provides curated problem lists, detailed video walkthroughs, and organized study paths for mastering algorithms and data structures. It functions as both a problem-solving guide and an educational resource that breaks down complex problems into understandable solutions.</p>
+                
+                <h3>What is in it?</h3>
+                <p>NeetCode offers:</p>
+                <ul>
+                    <li>Curated problem lists organized by topic and difficulty (NeetCode 150, NeetCode All)</li>
+                    <li>Video explanations for each problem with step-by-step walkthroughs</li>
+                    <li>Structured learning paths covering arrays, linked lists, trees, graphs, dynamic programming, and more</li>
+                    <li>Pattern recognition guides that teach common problem-solving patterns</li>
+                    <li>Time and space complexity analysis for each solution</li>
+                    <li>Practice problems linked to LeetCode with direct access</li>
+                    <li>Community discussions and additional resources</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>NeetCode is highly relevant to CMPSC 465 students because it:</p>
+                <ul>
+                    <li>Provides structured learning paths that align with course topics</li>
+                    <li>Offers clear explanations that help bridge theory and practice</li>
+                    <li>Teaches problem-solving patterns that are essential for exams and assignments</li>
+                    <li>Helps you understand not just "what" but "why" certain approaches work</li>
+                    <li>Provides a manageable study plan (NeetCode 150) that covers essential topics</li>
+                    <li>Video walkthroughs serve as excellent study aids when you're stuck on problems</li>
+                    <li>Helps build confidence through systematic problem-solving practice</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To use NeetCode effectively:</p>
+                <ul>
+                    <li>Follow the NeetCode 150 list as a structured study plan</li>
+                    <li>Attempt problems yourself before watching video explanations</li>
+                    <li>Watch videos even for problems you solve correctly to learn alternative approaches</li>
+                    <li>Focus on understanding the patterns and techniques rather than memorizing solutions</li>
+                    <li>Use the topic organization to target specific areas you're studying in class</li>
+                    <li>Take notes on problem-solving patterns and common techniques</li>
+                    <li>Revisit problems after some time to reinforce learning</li>
+                    <li>Combine NeetCode problems with your course assignments for comprehensive practice</li>
+                </ul>
+                
+                <a href="https://neetcode.io" target="_blank" class="cta-button">Go to NeetCode</a>
+            </section>
+
+            <!-- Resource 5: WilliamFiset -->
+            <section id="resource-5" class="resource-section">
+                <h2>Resource 5: WilliamFiset YouTube Channel (Detailed Topic Playlists)</h2>
+                
+                <h3>What is this?</h3>
+                <p>The WilliamFiset YouTube channel is a comprehensive video lecture series covering algorithms, data structures, and computer science fundamentals. It functions as an educational resource providing in-depth, well-organized video content with clear explanations, code implementations, and visual demonstrations.</p>
+                
+                <h3>What is in it?</h3>
+                <p>The channel contains extensive playlists covering:</p>
+                <ul>
+                    <li>Data structures (Arrays, Linked Lists, Stacks, Queues, Trees, Heaps, Hash Tables, etc.)</li>
+                    <li>Graph algorithms (BFS, DFS, Dijkstra's, Bellman-Ford, A*, Minimum Spanning Tree, etc.)</li>
+                    <li>Dynamic programming with detailed problem breakdowns</li>
+                    <li>Sorting and searching algorithms</li>
+                    <li>Mathematical foundations relevant to algorithms</li>
+                    <li>Each video includes theory explanation, visual diagrams, and code implementation</li>
+                    <li>Playlists are organized by topic for easy navigation</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>WilliamFiset's channel is valuable for CMPSC 465 students because:</p>
+                <ul>
+                    <li>Provides comprehensive coverage of topics typically included in algorithms courses</li>
+                    <li>Offers clear, detailed explanations that complement course lectures</li>
+                    <li>Shows complete code implementations that help with programming assignments</li>
+                    <li>Visual diagrams and animations aid understanding of complex concepts</li>
+                    <li>Well-organized playlists allow you to focus on specific topics</li>
+                    <li>Helps with exam preparation through thorough topic coverage</li>
+                    <li>Useful for review when you need to refresh understanding of specific algorithms</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To maximize learning from WilliamFiset's channel:</p>
+                <ul>
+                    <li>Use playlists to find videos on specific topics you're studying</li>
+                    <li>Watch videos at 1.25x or 1.5x speed if you're familiar with the concepts</li>
+                    <li>Pause videos to implement algorithms yourself before seeing the solution</li>
+                    <li>Take notes on key concepts and implementation details</li>
+                    <li>Use videos as review material before exams</li>
+                    <li>Follow along with code implementations in your preferred programming language</li>
+                    <li>Watch videos on topics you find challenging in your course</li>
+                    <li>Use the channel's organization to create a study plan aligned with your course schedule</li>
+                </ul>
+                
+                <a href="https://www.youtube.com/c/WilliamFiset-videos" target="_blank" class="cta-button">Go to WilliamFiset YouTube</a>
+            </section>
+
+            <!-- Resource 6: Abdul Bari -->
+            <section id="resource-6" class="resource-section">
+                <h2>Resource 6: Abdul Bari YouTube Channel (Beginner-Friendly Lectures)</h2>
+                
+                <h3>What is this?</h3>
+                <p>Abdul Bari's YouTube channel is an educational resource specializing in beginner-friendly explanations of algorithms and data structures. It functions as a learning aid that breaks down complex topics into easily digestible lectures, making algorithms accessible to students at all levels.</p>
+                
+                <h3>What is in it?</h3>
+                <p>The channel features comprehensive video lectures on:</p>
+                <ul>
+                    <li>Fundamental data structures (Arrays, Linked Lists, Stacks, Queues, Trees, Graphs)</li>
+                    <li>Core algorithms (Sorting, Searching, Graph Traversal, Dynamic Programming)</li>
+                    <li>Algorithm analysis and complexity (Big O notation, time and space complexity)</li>
+                    <li>Step-by-step problem-solving approaches</li>
+                    <li>Detailed explanations with examples and visual aids</li>
+                    <li>Playlists organized by topic for systematic learning</li>
+                    <li>Lectures that build concepts from the ground up</li>
+                </ul>
+                
+                <h3>Relevance to Audience: How is the information useful for a CMPSC 465 student?</h3>
+                <p>Abdul Bari's channel is particularly useful for CMPSC 465 students because:</p>
+                <ul>
+                    <li>Beginner-friendly approach helps when you're struggling with foundational concepts</li>
+                    <li>Clear, methodical explanations reinforce understanding</li>
+                    <li>Step-by-step problem-solving teaches systematic approaches</li>
+                    <li>Visual explanations make abstract concepts more concrete</li>
+                    <li>Comprehensive coverage ensures you understand topics from basics to advanced</li>
+                    <li>Helpful for review and clarification when course materials are unclear</li>
+                    <li>Builds confidence through clear, accessible instruction</li>
+                </ul>
+                
+                <h3>Usage Tips: What tips help use the resource efficiently?</h3>
+                <p>To effectively use Abdul Bari's channel:</p>
+                <ul>
+                    <li>Start with foundational videos if you're new to a topic</li>
+                    <li>Watch videos on topics you find confusing in your course</li>
+                    <li>Use playlists to follow a structured learning path</li>
+                    <li>Take notes on key concepts and problem-solving strategies</li>
+                    <li>Pause videos to work through examples yourself</li>
+                    <li>Watch videos before attempting homework problems for better understanding</li>
+                    <li>Use as a supplement to course materials when you need additional explanation</li>
+                    <li>Review videos before exams to reinforce concepts</li>
+                </ul>
+                
+                <a href="https://www.youtube.com/c/AbdulBari" target="_blank" class="cta-button">Go to Abdul Bari YouTube</a>
+            </section>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <p><strong>CMPSCI465 Guide</strong></p>
+        <p>Created for Assignment 5 - Technical Communication</p>
+        <p><a href="#top">Back to Top</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
